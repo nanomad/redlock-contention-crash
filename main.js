@@ -77,7 +77,8 @@ async function main() {
     console.log("Waiting 2.5 seconds to start");
     await new Promise(resolve => setTimeout(resolve, 2500));
     for (let i = 0; i < MAX_INFLIGHT; i++) {
-        await queueA.add({message: 'START @ ' + new Date().toISOString()});
+        console.log(`Queueing task ${i}`)
+        await queueA.add({message: `START ${i} @ ${new Date().toISOString()}`});
         const counterA = await queueA.count()
         console.log("Stats", {
             "queued": counterA,
